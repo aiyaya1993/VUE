@@ -1,0 +1,41 @@
+<!DOCTYPE>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MY vue TEST</title>
+</head>
+<meta charset="UTF-8">
+<!-- 开发环境版本，包含了用帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<body>
+	<div id="app">
+		<input v-model="inputValue"/>
+		<button v-on:click="handleClick">提交</button>
+		<ul>
+			<textlist v-for="(item, index) in list" :key="index" :content="item"></textlist>
+		</ul>
+	</div>
+</body>
+
+<script type="text/javascript">
+	Vue.component("textlist",{
+		template: "<li>{{content}}</li>",
+        props:["content"]
+	})
+	new Vue({
+		el: "#app",
+		data: {
+			inputValue: "hello",
+			list:[]
+		},
+		methods: {
+			handleClick: function() {
+				this.list.push(this.inputValue);
+			}
+		}
+	})
+
+</script>
+</html>
