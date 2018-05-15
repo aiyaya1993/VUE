@@ -16,7 +16,7 @@
 			<button @click="handleClick">提交</button>
 		</div>
 		<ul>
-			<li v-for="item of list">{{item}}</li>
+			<li v-for="(item ,index) of list" :key="index">{{item}}</li>
 		</ul>
 	</div>
 </body>
@@ -30,7 +30,8 @@
 		},
 		methods: {
 			handleClick: function() {
-				this.list.push(this.inputValue)
+				this.list.push(this.inputValue);
+                this.inputValue="";
 			}
 		}
 
