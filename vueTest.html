@@ -9,33 +9,46 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<style type="text/css">
+</style>
 <body>
 	<div id="app">
-		<div>
-			<input v-model="inputValue" />
-			<button @click="handleClick">提交</button>
-		</div>
-		<ul>
-			<li v-for="(item ,index) of list" :key="index">{{item}}</li>
-		</ul>
+		<my-input @input="onInput" :value="price"></my-input>
+		{{price}}
 	</div>
 </body>
-
 <script type="text/javascript">
-	new Vue({
-		el: "#app",
-		data: {
-			inputValue: "hello",
-			list: []
-		},
-		methods: {
-			handleClick: function() {
-				this.list.push(this.inputValue);
-                this.inputValue="";
-			}
+//定义一个组件
+Vue.component("myInput",{
+	/*template: `<input :value="value" @input="updateVal($event.target.value)" type="text" />`,*/
+	template: `<input :value="value1" @input="updateVal($event.target.value)" type="text" />`,
+	prop: ["price"],
+	data: function() {
+		return {
+			value1: "aiyaya123"
 		}
-
-	})
-
+	},
+	methods: {
+		updateVal: function(val) {
+			this.$emit("input",val);
+			console.log(123)
+		}
+	}
+})
+new Vue({
+	el: "#app",
+	data: {
+		price: "aiyaya"
+	},
+	methods: {
+		onInput: function(val) {
+			this.price = val;
+			console.log(val);
+			console.log(789)
+		}
+	}
+})
 </script>
+
+
 </html>
